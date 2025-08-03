@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>QuesoCraft Registro</title>
+<style>
+  /* Fondo con textura y animación de quesos */
+  body, html {
+    margin: 0; padding: 0; height: 100%;
+    overflow: hidden;
+    font-family: 'Comic Sans MS', cursive;
+  }
+
+  /* Fondo textura queso */
+  body {
+    background: #ffd966 url('https://i.imgur.com/z6QhMqL.png') repeat;
+    position: relative;
+  }
+
+  /* Contenedor quesos animados */
+  .cheese-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .cheese {
+    position: absolute;
+    width: 50px;
+    animation: floatCheese linear infinite;
+    user-select: none;
+  }
+
+  /* Animación quesos que flotan de un lado a otro */
+  @keyframes floatCheese {
+    0% {
+      transform: translateX(0) translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(calc(100vw + 100px)) translateY(-50px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* Modal */
+  #modal {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255 255 204 / 0.95);
+    border: 4px solid #ffcc00;
+    border-radius: 15px;
+    padding: 30px;
+    width: 320px;
+    box-shadow: 0 0 15px #ffcc00;
+    z-index: 10;
+  }
+
+  #modal h2 {
+    margin-top: 0;
+    color: #996600;
+    text-align: center;
+    font-size: 28px;
+  }
+
+  #modal input {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    font-size: 18px;
+    border: 2px solid #996600;
+    border-radius: 8px;
+  }
+
+  #modal button {
+    width: 100%;
+    padding: 12px;
+    background: #ffcc00;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #663300;
+    cursor: pointer;
+    box-shadow: 0 0 8px #996600;
+    transition: background 0.3s ease;
+  }
+
+  #modal button:hover {
+    background: #ffdb4d;
+  }
+
+  /* Explosión creeper */
+  #explosion {
+    position: fixed;
+    top: 50%; left: 50%;
+    width: 300px; height: 300px;
+    transform: translate(-50%, -50%);
+    background: url('https://i.imgur.com/RqXy5cA.gif') no-repeat center center;
+    background-size: contain;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 20;
+    transition: opacity 0.5s ease;
+  }
+</style>
+</head>
+<body>
+
+  <div class="cheese-container" id="cheeseContainer"></div>
+
+  <div id="modal">
+    <h2>Registrarse a QuesoCraft</h2>
+    <form id="registroForm">
+      <input type="text" id="nombre" placeholder="Nombre de usuario" required autocomplete="off" />
+      <input type="password" id="contrasena" placeholder="Contraseña secreta" required autocomplete="off" />
+      <button type="submit">Unirme al server</button>
+    </form>
+  </div>
+
+  <div id="explosion"></div>
+
+  <audio id="explosionSound" src="https://freesound.org/data/previews/341/341695_3248244-lq.mp3" preload="auto"></audio>
+
+  <script>
+    const cheeseContainer = document.getElementById('cheeseContainer');
+
+    // Crear quesos animados al azar
+    function crearQueso() {
+      const queso = document.createElement('img');
+      queso.src = 'https://i.imgur.com/vFG1v2B.png'; // icono queso
+      queso.classList.add('cheese');
+
+      // Posición vertical aleatoria
+      queso.style.top = Math.random() * window.innerHeight + 'px';
+
+      // Duración animación aleatoria (8 a 15 segundos)
+      queso.style.animationDuration = (8 + Math.random() * 7) + 's';
+
+      // Posición horizontal inicial (fuera a la izquierda)
+      queso.style.left =
+

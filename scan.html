@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Register to PepeAnticheat</title>
+<style>
+  body, html {
+    margin: 0; padding: 0; height: 100%;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  pre.ascii-pepe {
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 12px;
+    margin-bottom: 30px;
+    user-select: none;
+  }
+  form {
+    background: rgba(0,0,0,0.4);
+    padding: 25px 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #0a74da;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+  }
+  form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 24px;
+  }
+  input {
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+  }
+  button {
+    background: #0a74da;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  button:hover {
+    background: #095bb5;
+  }
+  #explosion {
+    position: fixed;
+    top: 50%; left: 50%;
+    width: 250px; height: 250px;
+    background: url('https://i.imgur.com/RqXy5cA.gif') no-repeat center center;
+    background-size: contain;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease;
+    z-index: 9999;
+  }
+</style>
+</head>
+<body>
+
+<pre class="ascii-pepe">
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⡤⠤⢤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⠉⠀⠀⠀⠀⠉⠓⢦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⡼⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢷⡀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢠⡟⠀⠀⠀⢀⡄⠀⠀⠀⠀⠀⠀⠀⠀⢻⡄⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⢠⠏⢹⡀⠀⠀⠀⠀⠀⠀⠀⠀⢷⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠘⡄⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢿⡄⠀⠀⠀⠙⠻⠃⠀⠀⠀⠀⠀⠀⠀⢠⡿⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠻⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⠟⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣦⣄⠀⠀⠀⠀⠀⠀⣠⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠻⠿⠿⠿⠛⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+</pre>
+
+<form id="registerForm">
+  <h2>Register to PepeAnticheat</h2>
+  <input type="text" placeholder="Username" required autocomplete="off" />
+  <input type="password" placeholder="Password" required autocomplete="off" />
+  <button type="submit">Register</button>
+</form>
+
+<div id="explosion"></div>
+
+<script>
+  const form = document.getElementById('registerForm');
+  const explosion = document.getElementById('explosion');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    explosion.style.opacity = '1';
+    form.querySelector('button').disabled = true;
+
+    setTimeout(() => {
+      window.location.href = 'scan.html';
+    }, 2000);
+  });
+</script>
+
+</body>
+</html>

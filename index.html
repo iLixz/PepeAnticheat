@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>QuesoCrafting Registro</title>
+<title>QuesoCrafting - Pepe Style</title>
 <style>
   body, html {
     margin: 0; padding: 0; height: 100%;
@@ -24,7 +24,60 @@
 
   .cheese {
     position: absolute;
-    width:
+    width: 40px;
+    user-select: none;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes floatRight {
+    0% {
+      transform: translateX(-50px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(calc(100vw + 50px));
+      opacity: 0;
+    }
+  }
+
+  @keyframes floatLeft {
+    0% {
+      transform: translateX(calc(100vw + 50px));
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-50px);
+      opacity: 0;
+    }
+  }
+
+  #main-content {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    text-align: center;
+  }
+
+  #main-content img {
+    width: 200px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px #ffcc00;
+  }
+
+  #main-content button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    background: #ffcc00;
+    border: none;
+    border-radius: 15px;
+    color: #663300;
+    cursor: pointer;
+    box-shadow: 0 0 10px #996600;
+    transition: background 0.3s
 
 
 

@@ -3,87 +3,167 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>PepeAnticheat - Seguridad para Minecraft</title>
+<title>PepeAnticheat Registro</title>
 <style>
   /* Reset básico */
   * {
     margin: 0; padding: 0; box-sizing: border-box;
   }
-  body {
+  body, html {
+    height: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    color: white;
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
+    background: #ffd966 url('https://i.imgur.com/2x38Knn.png') repeat;
+    overflow: hidden;
   }
-  header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 60px;
-    background: rgba(0,0,0,0.3);
-    backdrop-filter: blur(10px);
-    display: flex;
-    align-items: center;
-    padding: 0 30px;
-    z-index: 1000;
-  }
-  header .logo {
-    font-weight: 700;
-    font-size: 24px;
-    letter-spacing: 2px;
-    cursor: default;
-  }
-  main {
-    position: relative;
-    padding-top: 80px;
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-    background: rgba(0,0,0,0.4); /* Fondo semitransparente para que se destaque */
-    border-radius: 15px;
-    padding: 40px 30px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    z-index: 10;
-  }
-  main h1 {
-    font-size: 3rem;
-    margin-bottom: 15px;
-    text-shadow: 0 0 10px rgba(0,0,0,0.3);
-  }
-  main p {
-    font-size: 1.25rem;
-    margin-bottom: 30px;
-    color: #d0d9f5;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  button.cta {
-    background-color: #ffcc00;
-    border: none;
-    padding: 15px 40px;
-    font-weight: 700;
-    font-size: 1.1rem;
-    border-radius: 50px;
-    color: #663300;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 0 15px #ffcc00aa;
-  }
-  button.cta:hover {
-    background-color: #ffdb4d;
-    box-shadow: 0 0 25px #ffdb4dcc;
-  }
-  /* Fondo animado con partículas sutiles */
-  #particles {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+
+  /* Quesitos animados */
+  .cheese {
+    position: absolute;
+    width: 40px;
+    user-select: none;
     pointer-events: none;
-    z-index: 0;
-    display: block;
+    animation-timing-function: linear;
   }
-</style
+
+  /* Animaciones con direcciones y velocidades distintas */
+  @keyframes moverDerecha {
+    0% { transform: translateX(-50px) translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateX(110vw) translateY(-20px) rotate(360deg); opacity: 0; }
+  }
+  @keyframes moverIzquierda {
+    0% { transform: translateX(110vw) translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateX(-50px) translateY(20px) rotate(-360deg); opacity: 0; }
+  }
+
+  /* Caja de registro */
+  #registroModal {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255 255 204 / 0.95);
+    border: 4px solid #ffcc00;
+    border-radius: 15px;
+    padding: 25px 40px;
+    width: 300px;
+    box-shadow: 0 0 20px #ffcc00;
+    text-align: center;
+    z-index: 9999;
+  }
+
+  #registroModal h2 {
+    color: #996600;
+    margin-bottom: 15px;
+    font-size: 24px;
+  }
+
+  #registroModal input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 18px 0;
+    font-size: 16px;
+    border: 2px solid #996600;
+    border-radius: 8px;
+    outline: none;
+  }
+
+  #registroModal button {
+    background: #ffcc00;
+    border: none;
+    width: 100%;
+    padding: 12px;
+    font-weight: 700;
+    color: #663300;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #996600;
+    transition: background 0.3s ease;
+  }
+  #registroModal button:hover {
+    background: #ffdb4d;
+  }
+
+  /* Explosión creeper */
+  #explosion {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+    background: url('https://i.imgur.com/RqXy5cA.gif') no-repeat center center;
+    background-size: contain;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10000;
+    transition: opacity 0.5s ease;
+  }
+</style>
+</head>
+<body>
+
+<div id="registroModal">
+  <h2>Registrarse a PepeAnticheat</h2>
+  <form id="formRegistro">
+    <input type="text" id="usuario" placeholder="Nombre de usuario" required autocomplete="off" />
+    <input type="password" id="pass" placeholder="Contraseña secreta" required autocomplete="off" />
+    <button type="submit">Unirme al server</button>
+  </form>
+</div>
+
+<div id="explosion"></div>
+
+<script>
+  // Crear quesitos animados aleatorios
+  const numQuesos = 25;
+  const imagenQueso = 'https://i.imgur.com/vFG1v2B.png';
+  const animDerecha = 'moverDerecha';
+  const animIzquierda = 'moverIzquierda';
+
+  for(let i = 0; i < numQuesos; i++) {
+    const queso = document.createElement('img');
+    queso.src = imagenQueso;
+    queso.classList.add('cheese');
+    queso.style.top = Math.random() * window.innerHeight + 'px';
+
+    // Alternar dirección
+    if(i % 2 === 0) {
+      queso.style.left = '-50px';
+      queso.style.animation = `${animDerecha} ${8 + Math.random()*7}s linear infinite`;
+    } else {
+      queso.style.left = '110vw';
+      queso.style.animation = `${animIzquierda} ${8 + Math.random()*7}s linear infinite`;
+    }
+    queso.style.animationDelay = (Math.random() * 7) + 's';
+
+    document.body.appendChild(queso);
+  }
+
+  // Manejar formulario de registro
+  const form = document.getElementById('formRegistro');
+  const modal = document.getElementById('registroModal');
+  const explosion = document.getElementById('explosion');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    // Aquí podrías agregar validación o enviar datos a backend
+
+    // Mostrar explosión
+    explosion.style.opacity = '1';
+
+    // Deshabilitar el formulario para que no pueda enviar más
+    form.querySelector('button').disabled = true;
+
+    // Después de 2 segundos redirigir a bienvenida.html
+    setTimeout(() => {
+      window.location.href = 'bienvenida.html';
+    }, 2000);
+  });
+</script>
+
+</body>
+</html>
+
 
 
 

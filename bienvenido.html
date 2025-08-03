@@ -1,43 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>¡Bienvenido a QuesoCraft!</title>
-  <style>
-    body {
-      background-color: #222;
-      color: #fff;
-      font-family: 'Comic Sans MS', cursive;
-      text-align: center;
-      padding-top: 100px;
-    }
-
-    h1 {
-      font-size: 48px;
-      color: #ffcc00;
-    }
-
-    p {
-      font-size: 24px;
-    }
-
-    .emoji {
-      font-size: 40px;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bienvenido a QuesoCraft</title>
+<style>
+  body {
+    font-family: 'Comic Sans MS', cursive;
+    background: #ffd966 url('https://i.imgur.com/z6QhMqL.png') repeat;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #663300;
+    text-align: center;
+  }
+</style>
 </head>
 <body>
-
-  <h1>🎉 ¡Bienvenido a QuesoCraft! 🎉</h1>
-  <p class="emoji">🧀🗡️🟩</p>
-  <p id="mensaje"></p>
-  <p>Te asignamos el rango: <strong>CHEDDAR SUPREMO</strong></p>
-  <p>IP del server: <code>quesocraft.fake.mc</code></p>
-
-  <script>
-    const nombre = localStorage.getItem("jugador") || "Jugador misterioso";
-    document.getElementById("mensaje").innerText = `Hola, ${nombre}. Prepará tu espada... y tu queso.`;
-  </script>
-
+  <div>
+    <h1>¡Bienvenido a QuesoCraft!</h1>
+    <p>Ya estás registrado y listo para empezar.</p>
+  </div>
 </body>
 </html>
